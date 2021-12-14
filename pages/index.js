@@ -1,4 +1,3 @@
-import styles from "../styles/Home.module.css";
 import { ethers } from "ethers";
 import { useState } from "react";
 import Web3Modal from "web3modal";
@@ -46,7 +45,7 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="text-2xl font-bold underline bg-red-100">
       <Link href="/localhost">
         <a>Go to Localhost testing</a>
       </Link>

@@ -1,9 +1,7 @@
-import styles from "../styles/Home.module.css";
 import { ethers } from "ethers";
 import { useState } from "react";
 import Web3Modal from "web3modal";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 import { freeTokenAddressLocal } from "../.config";
 import FreeTokenABI from "../artifacts/contracts/FreeToken.sol/FreeToken.json";
@@ -43,7 +41,7 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
+    <div>
       <Link href="/">
         <a>Go to Rinkeby Testnet</a>
       </Link>
