@@ -1,19 +1,30 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Greeter", function () {
-  it("Should return the new greeting once it's changed", async function () {
-    const Greeter = await ethers.getContractFactory("Greeter");
-    const greeter = await Greeter.deploy("Hello, world!");
-    await greeter.deployed();
+describe("TransferAmount", function () {
+  it("Should set the transfer amount to 50", async function () {
+    const Free = await ethers.getContractFactory("FreeToken");
+    const free = await Free.deploy();
+    await free.deployed();
 
-    expect(await greeter.greet()).to.equal("Hello, world!");
+    expect(await free.transferAmount()).to.equal(100);
 
-    const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
+    const tx = await free.setTransferAmount(50);
+    await tx.wait();
+    expect(await free.transferAmount()).to.equal(50);
+  });
+});
 
-    // wait until the transaction is mined
-    await setGreetingTx.wait();
+describe("GetTokens", function () {
+  it("Should transfer tokens to a second wallet address", async function () {
+    const Free = await ethers.getContractFactory("FreeToken");
+    const free = await Free.deploy();
+    await free.deployed();
 
-    expect(await greeter.greet()).to.equal("Hola, mundo!");
+    const [owner, secondAddress] = await ethers.getSigners();
+    await free.connect(secondAddress).giveTokens();
+    expect(await free.balanceOf(secondAddress.address)).to.equal(
+      await free.transferAmount()
+    );
   });
 });

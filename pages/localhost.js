@@ -3,8 +3,9 @@ import { ethers } from "ethers";
 import { useState } from "react";
 import Web3Modal from "web3modal";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-import { freeTokenAddressRinkeby } from "../.config";
+import { freeTokenAddressLocal } from "../.config";
 import FreeTokenABI from "../artifacts/contracts/FreeToken.sol/FreeToken.json";
 
 export default function Home() {
@@ -18,7 +19,7 @@ export default function Home() {
 
     console.log(signer);
     const freeToken = new ethers.Contract(
-      freeTokenAddressRinkeby,
+      freeTokenAddress,
       FreeTokenABI.abi,
       signer
     );
@@ -28,36 +29,30 @@ export default function Home() {
     await freeToken.giveTokens();
   };
 
-  const balance = async () => {
-    const provider = new ethers.providers.JsonRpcProvider(
-      "https://rinkeby-light.eth.linkpool.io/"
-    );
+  const testAccount = async () => {
+    const provider = new ethers.providers.JsonRpcProvider();
     const tokencontract = new ethers.Contract(
-      freeTokenAddressRinkeby,
+      freeTokenAddressLocal,
       FreeTokenABI.abi,
       provider
     );
-    setWallet(
-      "Owner Address: " +
-        (await tokencontract.owner()) +
-        " owns " +
-        (await tokencontract.balanceOf(tokencontract.owner()))
+
+    console.log(
+      (await tokencontract.balanceOf(tokencontract.owner())).toString()
     );
   };
 
   return (
     <div className={styles.container}>
-      <Link href="/localhost">
-        <a>Go to Localhost testing</a>
+      <Link href="/">
+        <a>Go to Rinkeby Testnet</a>
       </Link>
-      <h2>FreeToken on Rinkeby</h2>
+      <h2>FreeToken on Localost</h2>
       <br />
-      <p>It's free. Really. Once every 24 hours.</p>
+      <p>It's free. Really.</p>
       <br />
       <button onClick={giveTokens}>Give Me Tokens</button>
-      <br />
-      <button onClick={balance}>Show balance of owner</button>
-      <p>{wallet}</p>
+      <button onClick={testAccount}>Test the account balance</button>
     </div>
   );
 }

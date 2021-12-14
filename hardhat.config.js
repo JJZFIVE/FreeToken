@@ -1,21 +1,19 @@
 require("@nomiclabs/hardhat-waffle");
+const fs = require("fs");
 
-// This is a sample Hardhat task. To learn how to create your own go to
-// https://hardhat.org/guides/create-task.html
-task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
+const projectId = "99f2b74367c740d19221f8803b62ba8d";
+// set this to environment variable later
+const privateKey = fs.readFileSync(".secret").toString();
 
-  for (const account of accounts) {
-    console.log(account.address);
-  }
-});
-
-// You need to export an object to set up your config
-// Go to https://hardhat.org/config/ to learn more
-
-/**
- * @type import('hardhat/config').HardhatUserConfig
- */
 module.exports = {
   solidity: "0.8.4",
+  networks: {
+    hardhat: {
+      chainId: 1337,
+    },
+    rinkeby: {
+      url: `https://rinkeby.infura.io/v3/${projectId}`,
+      accounts: [privateKey],
+    },
+  },
 };
