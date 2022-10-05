@@ -21,3 +21,7 @@ I decided that was a great time to dive into Web3 dev. To build this project, I 
 - Remix (https://remix.ethereum.org/)
 - Hardhat (Ethereum development environment)
 - Infura (HTTP connection to Polygon blockchain)
+
+## Images
+
+<img width="1509" alt="Home" src="https://user-images.githubusercontent.com/23621657/194154658-e370c2b1-8206-4201-a0ae-dea1b291c843.png">
