@@ -5,7 +5,7 @@ allowed to receive a certain amount of Free Tokens until the supply is depleted.
 
 
 I was recovering from my second sinus surgery of 2021 in the winter, and I'd been infatuated with blockchain technology for over a year at that point, so 
-I decided that was a great time to dive into Web3 dev. To build this project, I used multiple new technologies: Solidity, NextJS, ethers.js, Hardhat, and Infura.
+I decided that was a great time to dive into Web3 dev. To build this project, I used multiple new technologies: Solidity, NextJS, ethers.js, Hardhat, and Infura. This project was a practical first Web3 project and allowed me to build my next Web3 project: [OtterGang](https://github.com/JJZFIVE/OtterGang).
 
 
 ## Technologies Used
